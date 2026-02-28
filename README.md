@@ -72,7 +72,7 @@ Next step:    one suggested follow-up
 ## Run locally
 
 ```bash
-git clone https://github.com/gish1337/alm-agent
+git clone https://github.com/ALM-AI552/alm-agent
 cd alm-agent
 npm install
 cp .env.example .env
