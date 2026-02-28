@@ -72,7 +72,7 @@ Next step:    one suggested follow-up
 ## Run locally
 
 ```bash
-git clone https://github.com/ALM-AI552/BureauAgent
+git clone https://github.com/BureauAgent/BureauAgent
 cd BureauAgent
 npm install
 cp .env.example .env
