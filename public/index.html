@@ -740,8 +740,15 @@
         // ── SCROLL REVEAL ──
         const revObs = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-        }, { threshold: 0.08, rootMargin: '-36px' });
+        }, { threshold: 0.01, rootMargin: '0px' });
         document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+        // Fallback: reveal anything already in viewport after short delay
+        setTimeout(() => {
+            document.querySelectorAll('.reveal:not(.vis)').forEach(el => {
+                const r = el.getBoundingClientRect();
+                if (r.top < window.innerHeight + 100) el.classList.add('vis');
+            });
+        }, 200);
 
         // ── HERO PARALLAX ──
         const heroEl = document.querySelector('.hero');
