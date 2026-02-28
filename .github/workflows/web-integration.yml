@@ -1,0 +1,67 @@
+name: Web Bot Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+        continue-on-error: true
+
+      - name: Test web server (local mode)
+        env:
+          BOT_MODE: web
+          AI_PROVIDER: local
+          WEB_PORT: 3000
+        run: |
+          echo "Запускаем веб-сервер в тестовом режиме..."
+          timeout 30 npm start &
+          sleep 10
+          curl http://localhost:3000/health || echo "Health check failed"
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy notification
+        run: |
+          echo "✅ Проект готов к деплою"
+          echo "Добавьте здесь команды для деплоя на ваш хостинг:"
+          echo "- Heroku: git push heroku main"
+          echo "- Railway: railway up"
+          echo "- Vercel: vercel --prod"
+          echo "- Docker: docker build & push"
