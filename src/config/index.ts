@@ -61,7 +61,7 @@ export function loadConfig(): BotConfig {
     // Конфигурация Solana Agent Protocol (SAP)
     const sapConfig = {
         enabled: (process.env.SAP_ENABLED || 'true').trim() !== 'false',
-        agentName: (process.env.SAP_AGENT_NAME || 'Solana AI Agent').trim(),
+        agentName: (process.env.SAP_AGENT_NAME || 'ALM').trim(),
         agentDescription: (process.env.SAP_AGENT_DESCRIPTION || 'Advanced AI agent for Solana blockchain interactions').trim(),
         agentVersion: (process.env.SAP_AGENT_VERSION || '1.0.0').trim()
     };

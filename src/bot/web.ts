@@ -186,7 +186,7 @@ export class WebBot {
             const { topic } = req.body;
             if (!topic) return res.status(400).json({ error: 'topic is required' });
             try {
-                const prompt = `Write a tweet about: ${topic}. Max 260 characters. Confident builder tone. About AgentPass or Solana AI agents. No hashtag spam.`;
+                const prompt = `Write a tweet about: ${topic}. Max 260 characters. Confident builder tone. About ALM agent on Solana. No hashtag spam.`;
                 const generated = await this.processor.processMessage(prompt);
                 const tweetText = generated.substring(0, 280);
                 const tweet = await this.twitterClient.readWrite.v2.tweet({ text: tweetText });
@@ -201,7 +201,7 @@ export class WebBot {
             const { topic } = req.body;
             if (!topic) return res.status(400).json({ error: 'topic is required' });
             try {
-                const prompt = `Write a tweet about: ${topic}. Max 260 characters. Confident builder tone. About AgentPass or Solana AI agents. No hashtag spam. Return ONLY the tweet text, nothing else.`;
+                const prompt = `Write a tweet about: ${topic}. Max 260 characters. Confident builder tone. About ALM agent on Solana. No hashtag spam. Return ONLY the tweet text, nothing else.`;
                 const text = await this.processor.processMessage(prompt);
                 return res.json({ text: text.substring(0, 280) });
             } catch (err: any) {
