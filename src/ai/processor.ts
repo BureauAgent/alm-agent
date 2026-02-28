@@ -319,12 +319,12 @@ export class AIProcessor {
             const response = await this.model.generateChat(systemPrompt, messages);
             return this.cleanOutput(response);
         } catch (error: any) {
-            console.error('AI error:', error.message);
-            // Читаемый текст ошибки OpenAI
-            if (error.response?.data?.error?.message) {
-                return `Ошибка AI: ${error.response.data.error.message}`;
-            }
-            return 'Извините, произошла ошибка. Проверьте OPENAI_API_KEY в .env';
+            const detail = error.response?.data?.error?.message
+                || error.response?.data?.message
+                || error.message
+                || String(error);
+            console.error('AI error:', detail, '| status:', error.response?.status, '| key present:', !!this.config.modelConfig?.apiKey);
+            return `Error: ${detail}`;
         }
     }
 

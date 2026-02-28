@@ -45,7 +45,8 @@ export class AIModel {
      * OpenAI — правильный chat completions с историей
      */
     private async chatWithOpenAI(systemPrompt: string, messages: ChatMessage[]): Promise<string> {
-        if (!this.config.apiKey) {
+        const apiKey = this.config.apiKey?.trim();
+        if (!apiKey) {
             throw new Error('OpenAI API key required. Set OPENAI_API_KEY in .env');
         }
 
@@ -64,7 +65,7 @@ export class AIModel {
             payload,
             {
                 headers: {
-                    'Authorization': `Bearer ${this.config.apiKey}`,
+                    'Authorization': `Bearer ${apiKey}`,
                     'Content-Type': 'application/json'
                 },
                 timeout: 30000
