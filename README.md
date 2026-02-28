@@ -1,6 +1,6 @@
-# ALM  On-Chain AI Agent
+# BureauAgent — On-Chain AI Agent
 
-ALM is an autonomous AI agent operating on the Solana blockchain. It monitors the Solana AI ecosystem, answers on-chain queries, and communicates in structured AGENT_SPEC format readable by both humans and machines.
+BureauAgent is an autonomous AI agent operating on the Solana blockchain. It monitors the Solana AI ecosystem, answers on-chain queries, and communicates in structured AGENT_SPEC format readable by both humans and machines.
 
 **Live:** https://ai-bot-project-lime.vercel.app
 
@@ -9,8 +9,8 @@ ALM is an autonomous AI agent operating on the Solana blockchain. It monitors th
 ## Identity
 
 ```
-agent_id      : alm
-agent_name    : ALM
+agent_id      : bureauagent
+agent_name    : BureauAgent
 agent_version : 1.0.0
 wallet        : DbzFutGThzbMNaDyqvdzWugdZuhnaqtWyfD9qp9GZRRV
 status        : active
@@ -19,7 +19,7 @@ protocol      : Solana Agent Protocol (SAP)
 
 ---
 
-## What ALM does
+## What BureauAgent does
 
 | Skill | Description |
 |---|---|
@@ -30,7 +30,7 @@ protocol      : Solana Agent Protocol (SAP)
 
 **Registry:** Monitors 11 active Solana AI agents (Eliza, GOAT, Drift Keeper, Jito MEV, BonkBot and others). GitHub activity crawled every 30 minutes. Reputation scoring 0-100.
 
-**OpenClaw compatible:** `/manifest` endpoint exposes ALM skills for external agent integrations.
+**OpenClaw compatible:** `/manifest` endpoint exposes BureauAgent skills for external agent integrations.
 
 ---
 
@@ -53,7 +53,7 @@ Next step:    one suggested follow-up
 | Route | Description |
 |---|---|
 | `/` | Chat interface |
-| `/agent` | ALM public profile + reputation |
+| `/agent` | BureauAgent public profile + reputation |
 | `/registry` | Live Solana agent registry |
 | `/manifest` | OpenClaw skill manifest |
 
@@ -72,8 +72,8 @@ Next step:    one suggested follow-up
 ## Run locally
 
 ```bash
-git clone https://github.com/ALM-AI552/alm-agent
-cd alm-agent
+git clone https://github.com/ALM-AI552/BureauAgent
+cd BureauAgent
 npm install
 cp .env.example .env
 # fill in OPENAI_API_KEY
@@ -90,7 +90,7 @@ Server runs on `http://localhost:3000`
 |---|---|---|
 | `OPENAI_API_KEY` | yes | OpenAI API key |
 | `AI_MODEL_NAME` | no | default: gpt-4o-mini |
-| `AGENT_WALLET_PUBLIC` | no | ALM public key |
+| `AGENT_WALLET_PUBLIC` | no | BureauAgent public key |
 | `SOLANA_RPC_URL` | no | default: mainnet |
 | `GITHUB_TOKEN` | recommended | 5000 req/h vs 60 |
 
@@ -107,7 +107,7 @@ src/
     processor.ts         AGENT_SPEC prompt + skill routing
   agent-protocol/
     index.ts             SAP Protocol core
-    profile.ts           ALM identity + reputation
+    profile.ts           BureauAgent identity + reputation
     registry.ts          Agent registry API
     seed.ts              11 pre-seeded agents
     skills.ts            Skill definitions
@@ -127,7 +127,7 @@ public/
   agent.html             Agent profile
   registry.html          Agent registry
   manifest.html          OpenClaw manifest
-  logo.svg               ALM logo
+  logo.svg               BureauAgent logo
 ```
 
 ---
